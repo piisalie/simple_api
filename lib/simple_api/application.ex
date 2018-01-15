@@ -6,10 +6,18 @@ defmodule SimpleApi.Application do
   use Application
 
   def start(_type, _args) do
-    # List all child processes to be supervised
+    port = Application.fetch_env!(:simple_api, :port)
+    IO.puts "Starting Server on port: #{port}"
+
     children = [
       # Starts a worker by calling: SimpleApi.Worker.start_link(arg)
       # {SimpleApi.Worker, arg},
+      Plug.Adapters.Cowboy.child_spec(
+        :http,
+        SimpleApi.Endpoint,
+        [],
+        [port: port]),
+      {SimpleApi.Counter, name: SimpleApi.Counter}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
