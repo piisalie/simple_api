@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+mix deps.get
+MIX_ENV=prod mix release
+mkdir playground
+cp _build/prod/rel/simple_api/releases/0.1.0/simple_api.tar.gz ./playground
+cd ./playground
+tar -zxvf simple_api.tar.gz
+rm simple_api.tar.gz
