@@ -6,7 +6,7 @@ defmodule SimpleApi.Application do
   use Application
 
   def start(_type, _args) do
-    port = Application.fetch_env!(:simple_api, :port)
+    port = 4000
     IO.puts "Starting Server on port: #{port}"
 
     children = [
