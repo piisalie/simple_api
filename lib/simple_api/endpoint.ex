@@ -4,6 +4,12 @@ defmodule SimpleApi.Endpoint do
   plug :match
   plug :dispatch
 
+  match "/file" do
+    file = Path.join(:code.priv_dir(:simple_api), "hello.erl")
+    file_contents = File.read!(file)
+    send_resp(conn, 200, file_contents)
+  end
+
   match _ do
     count = SimpleApi.Counter.increment
     response =
