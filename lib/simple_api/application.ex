@@ -6,8 +6,10 @@ defmodule SimpleApi.Application do
   use Application
 
   def start(_type, _args) do
-    port = 4000
+    port = Application.get_env(:simple_api, :port, 4000)
     IO.puts "Starting Server on port: #{port}"
+    IO.puts "Clustered with:"
+    IO.inspect Node.list
 
     children = [
       # Starts a worker by calling: SimpleApi.Worker.start_link(arg)
