@@ -2,11 +2,14 @@ defmodule SimpleApi.Counter do
   use GenServer
 
   def start_link(opts) do
-    GenServer.start_link(__MODULE__, %{count: 0}, opts)
+    case GenServer.start_link(__MODULE__, %{count: 0}, opts) do
+      {:error, {:already_started, pid}} -> {:ok, pid}
+      {:ok, pid} -> {:ok, pid}
+    end
   end
 
   def increment do
-    GenServer.call(__MODULE__, {:increment})
+    GenServer.call({:global, __MODULE__}, {:increment})
   end
 
   def handle_call({:increment}, _from, state) do

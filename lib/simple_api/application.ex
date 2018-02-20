@@ -17,7 +17,7 @@ defmodule SimpleApi.Application do
         SimpleApi.Endpoint,
         [],
         [port: port]),
-      {SimpleApi.Counter, name: SimpleApi.Counter}
+      {SimpleApi.Counter, name: {:global, SimpleApi.Counter}}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
