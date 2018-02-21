@@ -19,15 +19,18 @@ An Example Application for exploring how to build releases at LoneStar Elixir 20
 ```
 git clone git@github.com:piisalie/simple_api.git
 cd simple_api
-./setup
+./setup 0.1.0
 cd playground
 ```
 
 ## Helpful ERL flags
 
-* -noshell
-* -pa <directory>
-* -boot <file> (sans .boot suffix)
-* -compile
-* -s <module> <function>
-* -extra
+* -noshell (start without the erlang shell)
+* -pa <directory> (path add, add a directory to the load path)
+* -boot <path to file> (sithout the .boot suffix)
+* -compile <path to file> (compile a file)
+* -s <module> <function> (execute a a function on start up)
+* -extra (pass extra arguments from commandline into functions)
+* -config <path to file> (specify a config file)
+* -args_file <path to file> (specify a vm.args file)
+* -app_name var value (add a variable and value to app_name's application config)
